@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	zig build -Doptimize=ReleaseFast
+
+override_dh_auto_install:
+	zig build -p debian/ghostty/usr -Doptimize=ReleaseFast install
+	# fix paths for installation
+	sed -i 's|debian/ghostty/usr/bin/|/usr/bin/|g' debian/ghostty/usr/share/applications/com.mitchellh.ghostty.desktop
+	sed -i 's|debian/ghostty/usr/bin/|/usr/bin/|g' debian/ghostty/usr/share/dbus-1/services/com.mitchellh.ghostty.service
+	sed -i 's|debian/ghostty/usr/bin/|/usr/bin/|g' debian/ghostty/usr/share/systemd/user/app-com.mitchellh.ghostty.service
+	# remove terminfo file due to conflict with ncurses-term
+	rm -f debian/ghostty/usr/share/terminfo/g/ghostty

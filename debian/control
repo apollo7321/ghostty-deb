@@ -1,0 +1,16 @@
+Source: ghostty
+Maintainer: Apollo <apollo@deb>
+Section: devel
+Priority: optional
+Standards-Version: 4.7.0
+Build-Depends: debhelper-compat (= 13), zig (>= 0.14.1), libgtk-4-dev, libgtk4-layer-shell-dev, libadwaita-1-dev, gettext, libxml2-utils, blueprint-compiler (>= 0.16.0)
+
+Package: ghostty
+Architecture: amd64
+Depends: ${misc:Depends}
+Description: GPU-accelerated terminal emulator with advanced features
+ Ghostty is a cross-platform, GPU-accelerated terminal emulator designed for
+ performance, compatibility, and extensibility. It supports modern features like
+ ligatures, custom shaders, and real-time rendering while maintaining
+ compatibility with traditional terminal applications.
+ This package provides the Ghostty terminal emulator built with Zig 0.14.1.

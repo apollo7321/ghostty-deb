@@ -1,0 +1,17 @@
+ghostty (1.2.3-1) UNRELEASED; urgency=high
+
+  * font: Numerous tweaks to improve various edge cases, especially around icon glyphs. GH-9076 GH-9142 GH-9160 GH-9152
+  * terminal: add semi-colon character to word boundary list for selection. GH-9069
+  * input: modify other keys 2 should use all mods, ignore consumed mods. This fixes a misencoding that caused shifted modifiers to not work with tmux (but also any other terminal program using modify other keys state 2) GH-9289
+  * Fix a deadlock scenario where programs that emit many color change or query operations could cause Ghostty to hang. GH-9224
+  * Fix a resource leak by not starting the scroll timer when scrolling outside the viewport if the scroll timer is already active. GH-9195
+  * Fix memory corruption that could happen when starting a scroll in one screen (primary vs alt) and continuing to scroll after the terminal program switched screens. GH-9223
+  * renderer: fix garbled rendering under some cases. GH-9252
+  * shell-integration: `ssh-terminfo` now caches properly for IPv6 addresses. GH-9251 GH-9281
+  * shell-integration: cursor integration now works in vi mode for fish. GH-9157
+  * shell-integration: no longer updates universal `fish_user_paths` variable. GH-9273
+  * GTK: If `title` is configured, set the correct window title immediately. GH-9120
+  * GTK: quick terminal autohide now works properly. GH-9145 GH-9139
+  * A new `-Demit-themes` (default true) build option has been added to build Ghostty without any bundled themes. This was added for packagers who are sensitive to licensing issues that may exist in our upstream dependency. We're looking into this in more detail but this is meant as a short-term solution to avoid the themes entirely if there are concerns. GH-9288
+
+ -- apollo <apollo@deb>  Sun, 26 Oct 2025 10:26:47 +0100
